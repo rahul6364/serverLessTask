@@ -1,0 +1,55 @@
+org: rahul6364
+app: aws-node-http-api-project
+service: aws-node-http-api-project
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-east-1:626072240565:table/Tasks
+
+functions:
+  welcome:
+    handler: src/welcome.handler
+    events:
+      - httpApi:
+          path: /
+          method: get
+  createTask:
+    handler: src/createTask.handler
+    events:
+      - httpApi:
+          path: /tasks
+          method: post
+  getTasks:
+    handler: src/getTasks.handler
+    events:
+      - httpApi:
+          path: /tasks
+          method: get
+  completeTask:
+    handler: src/completeTask.handler
+    events:
+      - httpApi:
+          path: /tasks/{id}
+          method: put
+
+resources:
+  Resources:
+    TasksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Tasks
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
