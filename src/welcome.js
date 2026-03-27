@@ -5,7 +5,7 @@ const welcome = async (event) => {
     statusCode: 200,
     body: JSON.stringify(
       {
-        message: "Hello From TWS Batch 5 - You all are awesome!",
+        message: "Hello everyOne, this is a serverless framework project",
       },
       null,
       2
