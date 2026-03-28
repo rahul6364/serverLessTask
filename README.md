@@ -85,6 +85,15 @@ Before you begin, ensure you have:
    aws configure
    ```
 
+## 🔧 EC2 Setup
+
+### Running on Ubuntu EC2 Instance
+
+Once connected to your EC2 instance, the environment setup looks like this:
+
+![EC2 Instance Details](images/Screenshot%202026-03-27%20203251.png)
+*Ubuntu EC2 instance running with Node.js, NVM, AWS CLI configured*
+
 ## 🚀 Deployment
 
 Deploy to AWS with a single command:
@@ -118,6 +127,24 @@ layers:
   None
 ```
 
+### Deployment in Action
+
+![Serverless Deploy Output](images/Screenshot%202026-03-27%20203303.png)
+*Terminal showing successful serverless deployment with all endpoints and functions*
+
+### AWS CloudFormation Stack Deployment
+
+![CloudFormation Stack Info](images/Screenshot%202026-03-27%20203645.png)
+*CloudFormation stack status showing UPDATE_COMPLETE deployment*
+
+![Deployment Timeline](images/Screenshot%202026-03-27%20203708.png)
+*CloudFormation deployment timeline showing all Lambda functions and resources being created*
+
+### S3 Deployment Artifacts
+
+![S3 Deployment Bucket](images/Screenshot%202026-03-27%20203239.png)
+*S3 bucket containing deployment artifacts: serverless-state.json, CloudFormation template, and packaged code*
+
 ## 🧪 Usage & Testing
 
 ### Using Postman
@@ -141,6 +168,11 @@ layers:
 4. **Welcome Message**
    - Method: `GET`
    - URL: `https://dtha0q2x60.execute-api.us-east-2.amazonaws.com/`
+
+#### Postman Testing in Action
+
+![Postman Complete Task Request](images/Screenshot%202026-03-27%20203340.png)
+*Postman PUT request successfully completing a task with 200 OK response*
 
 ### Using curl
 
@@ -189,6 +221,20 @@ aws-node-http-api-project/
 ├── serverless.yml         # Serverless configuration
 └── README.md              # This file
 ```
+
+## 🏗 AWS Architecture
+
+The application is deployed on AWS using CloudFormation, with the following components:
+
+![AWS Infrastructure Architecture](images/Screenshot%202026-03-27%20202308.png)
+*AWS CloudFormation Infrastructure Composer view showing Lambda functions, API Gateway, and DynamoDB integration*
+
+### Architecture Components:
+- **API Gateway**: Handles HTTP requests and routes them to Lambda functions
+- **Lambda Functions**: 4 serverless functions (welcome, createTask, getTasks, completeTask)
+- **DynamoDB**: NoSQL database for persistent task storage
+- **S3**: Stores deployment artifacts and serverless state
+- **CloudFormation**: Infrastructure as Code for deployment and management
 
 ## 🔧 Configuration
 

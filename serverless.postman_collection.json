@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "4e6e719d-ade4-4ad2-ae3c-d36c1f710c83",
+		"name": "serverless",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43737229",
+		"_collection_link": "https://rahul-130439.postman.co/workspace/Rahul's-Workspace~57036fa5-b00d-49bf-89ba-33276e2c4e08/collection/43737229-4e6e719d-ade4-4ad2-ae3c-d36c1f710c83?action=share&source=collection_link&creator=43737229"
+	},
+	"item": [
+		{
+			"name": "Get Welcome Message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dtha0q2x60.execute-api.us-east-2.amazonaws.com/",
+					"protocol": "https",
+					"host": [
+						"dtha0q2x60",
+						"execute-api",
+						"us-east-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Task",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"task\": \"Complete project documentation\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dtha0q2x60.execute-api.us-east-2.amazonaws.com/tasks",
+					"protocol": "https",
+					"host": [
+						"dtha0q2x60",
+						"execute-api",
+						"us-east-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dtha0q2x60.execute-api.us-east-2.amazonaws.com/tasks",
+					"protocol": "https",
+					"host": [
+						"dtha0q2x60",
+						"execute-api",
+						"us-east-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complete Task",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"completed\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dtha0q2x60.execute-api.us-east-2.amazonaws.com/tasks/{id}",
+					"protocol": "https",
+					"host": [
+						"dtha0q2x60",
+						"execute-api",
+						"us-east-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"tasks",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"Transform": "AWS::Serverless-2016-10-31",
+	"Resources": {
+		"Api": {
+			"Type": "AWS::Serverless::Api",
+			"Properties": {
+				"Name": {
+					"Fn::Sub": [
+						"${ResourceName} From Stack ${AWS::StackName}",
+						{
+							"ResourceName": "Api"
+						}
+					]
+				},
+				"StageName": "Prod",
+				"DefinitionBody": {
+					"openapi": "3.0",
+					"info": {},
+					"paths": {
+						"/": {
+							"get": {
+								"responses": {}
+							}
+						}
+					}
+				},
+				"EndpointConfiguration": "REGIONAL",
+				"TracingEnabled": true
+			}
+		}
+	}
+}
